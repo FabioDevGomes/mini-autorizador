@@ -3,13 +3,18 @@ package com.autorizador.dto;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class CartaoDTO implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	@JsonIgnore
 	private Long id;
 	private String senha;
 	private Long numeroCartao;
+
+	@JsonIgnore
 	private Long saldo;
 
 	public Long getId() {

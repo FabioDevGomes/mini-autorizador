@@ -2,6 +2,7 @@ package com.autorizador.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.autorizador.dto.CartaoDTO;
@@ -22,11 +23,20 @@ public class CartaoService {
 	public CartaoDTO criarCartao(CartaoDTO cartaoDTO) {
 		CartaoEntity entity = null;
 		
-		cartaoDTO.setSaldo(SALDO_INICIAL);		
+		cartaoDTO.setSaldo(SALDO_INICIAL);
+		
 		CartaoEntity cartao = parseToEntity(cartaoDTO);
+		encriptarSenha(cartao);
+		
+		
 		entity = repository.save(cartao);
 		
 		return parseToDTO(entity);
+	}
+
+	private void encriptarSenha(CartaoEntity cartaoDTO) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		cartaoDTO.setSenha(encoder.encode(cartaoDTO.getSenha()));
 	}
 
 	public Long retornarSaldo(Long numeroCartao) {

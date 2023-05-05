@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.hibernate.validator.constraints.Range;
+import org.springframework.lang.NonNull;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class CartaoEntity {
@@ -13,8 +15,11 @@ public class CartaoEntity {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
+	@NonNull
 	private String senha;
 	
+	@NonNull
 	@Column(unique = true)
 	private Long numeroCartao;
 	

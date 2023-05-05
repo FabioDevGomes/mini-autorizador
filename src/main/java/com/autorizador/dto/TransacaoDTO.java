@@ -2,10 +2,16 @@ package com.autorizador.dto;
 
 import java.util.Objects;
 
+import org.springframework.lang.NonNull;
+
+
 public class TransacaoDTO {
 	
 	private Long valor;
+	
+	@NonNull
 	private Long numeroCartao;
+	private String senhaCartao;
 	
 	public Long getValor() {
 		return valor;
@@ -38,6 +44,14 @@ public class TransacaoDTO {
 			return false;
 		TransacaoDTO other = (TransacaoDTO) obj;
 		return Objects.equals(numeroCartao, other.numeroCartao) && Objects.equals(valor, other.valor);
+	}
+
+	public String getSenhaCartao() {
+		return senhaCartao;
+	}
+
+	public void setSenhaCartao(String senhaCartao) {
+		this.senhaCartao = senhaCartao;
 	}
 
 }
