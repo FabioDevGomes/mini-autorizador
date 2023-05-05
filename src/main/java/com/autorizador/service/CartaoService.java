@@ -14,7 +14,7 @@ import com.autorizador.repository.CartaoRepository;
 @Service
 public class CartaoService {
 	
-	private static Long SALDO_INICIAL = 500L;
+	private static Double SALDO_INICIAL = 500.00;
 	private static String MSG_CARTAO_NAO_ENCONTRADO = "CARTAO_INEXISTENTE";
 	
 	@Autowired
@@ -39,7 +39,7 @@ public class CartaoService {
 		cartaoDTO.setSenha(encoder.encode(cartaoDTO.getSenha()));
 	}
 
-	public Long retornarSaldo(Long numeroCartao) {
+	public Double retornarSaldo(Long numeroCartao) {
 		CartaoDTO dto = null;
 		CartaoEntity cartaoEntity = buscarCartao(numeroCartao);
 		dto = parseToDTO(cartaoEntity);

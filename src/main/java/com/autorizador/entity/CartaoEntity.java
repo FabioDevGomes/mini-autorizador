@@ -24,7 +24,7 @@ public class CartaoEntity {
 	private Long numeroCartao;
 	
 	@Range(min = 0)
-	private Long saldo;
+	private Double saldo;
 	
 	public Long getId() {
 		return id;
@@ -50,11 +50,11 @@ public class CartaoEntity {
 		this.numeroCartao = numeroCartao;
 	}
 	
-	public Long getSaldo() {
+	public Double getSaldo() {
 		return saldo;
 	}
 	
-	public void setSaldo(Long saldo) {
+	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
 	}
 

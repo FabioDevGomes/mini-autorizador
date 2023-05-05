@@ -50,7 +50,7 @@ public class TransacaoService {
 	}
 
 	private void debitarValor(TransacaoDTO transacao, CartaoDTO dto) {
-		Long novoSaldo = dto.getSaldo() - transacao.getValor();
+		Double novoSaldo = dto.getSaldo() - transacao.getValor();
 		dto.setSaldo(novoSaldo);
 	}
 

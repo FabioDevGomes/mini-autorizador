@@ -32,7 +32,7 @@ public class CartaoController {
 	}
 
 	@GetMapping(value = "/{numeroCartao}")
-	public Long obterSaldo(@PathVariable("numeroCartao") Long numeroCartao) {
+	public Double obterSaldo(@PathVariable("numeroCartao") Long numeroCartao) {
 		return cartaoService.retornarSaldo(numeroCartao);
 	}
 	

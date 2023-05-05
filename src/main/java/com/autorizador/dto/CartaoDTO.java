@@ -15,7 +15,7 @@ public class CartaoDTO implements Serializable{
 	private Long numeroCartao;
 
 	@JsonIgnore
-	private Long saldo;
+	private Double saldo;
 
 	public Long getId() {
 		return id;
@@ -41,11 +41,11 @@ public class CartaoDTO implements Serializable{
 		this.numeroCartao = numeroCartao;
 	}
 	
-	public Long getSaldo() {
+	public Double getSaldo() {
 		return saldo;
 	}
 	
-	public void setSaldo(Long saldo) {
+	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
 	}
 	

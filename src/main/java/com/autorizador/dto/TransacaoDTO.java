@@ -7,17 +7,17 @@ import org.springframework.lang.NonNull;
 
 public class TransacaoDTO {
 	
-	private Long valor;
+	private Double valor;
 	
 	@NonNull
 	private Long numeroCartao;
 	private String senhaCartao;
 	
-	public Long getValor() {
+	public Double getValor() {
 		return valor;
 	}
 	
-	public void setValor(Long valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
 	
