@@ -36,6 +36,5 @@ public class ExeptionHandler extends ResponseEntityExceptionHandler{
 	public final ResponseEntity<?> handlerSenhaInvalidaException(Exception ex, WebRequest request){
 		return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(ex.getMessage());
 	}
-
 	
 }

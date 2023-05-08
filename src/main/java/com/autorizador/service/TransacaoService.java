@@ -1,5 +1,7 @@
 package com.autorizador.service;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import com.autorizador.entity.CartaoEntity;
 import com.autorizador.exception.CartaoInexistenteException;
 import com.autorizador.exception.SaldoInsuficienteException;
 import com.autorizador.exception.SenhaInvalidaException;
+import com.autorizador.mapper.DozerMapper;
 import com.autorizador.repository.CartaoRepository;
 
 @Service
@@ -24,23 +27,29 @@ public class TransacaoService {
 	
 	@Autowired
 	CartaoRepository cartaoRepository;
+
+	@Autowired
+	BCryptPasswordEncoder encoder;
 	
-	public void realizarDebito(TransacaoDTO transacao) {
+	
+	
+	public BigDecimal realizarDebito(TransacaoDTO transacao) {
 		CartaoDTO dto = getCartao(transacao);
 		
 		validarSenhaWorkaround(transacao, dto);
-		debitarValor(transacao, dto);
+		BigDecimal novoSaldo = debitarValor(transacao, dto);
 		
 		try {
-			cartaoRepository.save(cartaoService.parseToEntity(dto));
+			cartaoRepository.save(DozerMapper.parseObject(dto, CartaoEntity.class));
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new SaldoInsuficienteException(MSG_SALDO_INSUFICIENTE);
 		}
+		return novoSaldo;
 	}
 
 	private void validarSenhaWorkaround(TransacaoDTO transacao, CartaoDTO dto) {
-		var encoder = new BCryptPasswordEncoder();
+//		var encoder = new BCryptPasswordEncoder();
 		Boolean senhaValida = encoder.matches(transacao.getSenhaCartao(), dto.getSenha());
 		switch (Boolean.toString(senhaValida)) {
 			case "false": {
@@ -49,14 +58,16 @@ public class TransacaoService {
 		}
 	}
 
-	private void debitarValor(TransacaoDTO transacao, CartaoDTO dto) {
-		dto.getSaldo().subtract(transacao.getValor());
+	private BigDecimal debitarValor(TransacaoDTO transacao, CartaoDTO dto) {
+		BigDecimal novoSaldo = dto.getSaldo().subtract(transacao.getValor());
+		dto.setSaldo(novoSaldo);
+		return novoSaldo;
 	}
 
 	private CartaoDTO getCartao(TransacaoDTO transacao) {
 		CartaoEntity cartaoEntity = cartaoRepository.findByNumeroCartao(transacao.getNumeroCartao())
 				.orElseThrow(() -> new CartaoInexistenteException(CARTAO_INEXISTENTE));
-		CartaoDTO dto = cartaoService.parseToDTO(cartaoEntity);
+		CartaoDTO dto = DozerMapper.parseObject(cartaoEntity, CartaoDTO.class);
 		return dto;
 	}
 
