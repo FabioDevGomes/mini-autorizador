@@ -13,6 +13,7 @@ Collection do postman incluída na pasta src/main/resouces
 ![image](https://user-images.githubusercontent.com/6883531/236948261-5e4b7a5a-916c-4002-9576-fc52a1b28fb4.png)
 
 
-![image](https://user-images.githubusercontent.com/6883531/236952783-5e95933b-67c4-46c4-8504-5d83f70212c6.png)
+![image](https://user-images.githubusercontent.com/6883531/236953050-29cec9f6-38aa-4081-bc48-7662b154a9b6.png)
+
 
 
