@@ -1,5 +1,6 @@
 package com.autorizador.dto;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 import org.springframework.lang.NonNull;
@@ -7,17 +8,17 @@ import org.springframework.lang.NonNull;
 
 public class TransacaoDTO {
 	
-	private Double valor;
+	private BigDecimal valor;
 	
 	@NonNull
 	private Long numeroCartao;
 	private String senhaCartao;
 	
-	public Double getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 	
-	public void setValor(Double valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 	
@@ -28,10 +29,18 @@ public class TransacaoDTO {
 	public void setNumeroCartao(Long numeroCartao) {
 		this.numeroCartao = numeroCartao;
 	}
-	
+
+	public String getSenhaCartao() {
+		return senhaCartao;
+	}
+
+	public void setSenhaCartao(String senhaCartao) {
+		this.senhaCartao = senhaCartao;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(numeroCartao, valor);
+		return Objects.hash(numeroCartao, senhaCartao, valor);
 	}
 
 	@Override
@@ -43,15 +52,8 @@ public class TransacaoDTO {
 		if (getClass() != obj.getClass())
 			return false;
 		TransacaoDTO other = (TransacaoDTO) obj;
-		return Objects.equals(numeroCartao, other.numeroCartao) && Objects.equals(valor, other.valor);
+		return Objects.equals(numeroCartao, other.numeroCartao) && Objects.equals(senhaCartao, other.senhaCartao)
+				&& Objects.equals(valor, other.valor);
 	}
-
-	public String getSenhaCartao() {
-		return senhaCartao;
-	}
-
-	public void setSenhaCartao(String senhaCartao) {
-		this.senhaCartao = senhaCartao;
-	}
-
+	
 }

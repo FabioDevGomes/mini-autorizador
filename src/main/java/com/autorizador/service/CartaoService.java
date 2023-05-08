@@ -1,6 +1,8 @@
 package com.autorizador.service;
 
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,7 @@ import com.autorizador.repository.CartaoRepository;
 @Service
 public class CartaoService {
 	
-	private static Double SALDO_INICIAL = 500.00;
+	private static BigDecimal SALDO_INICIAL = new BigDecimal(500.00);
 	private static String MSG_CARTAO_NAO_ENCONTRADO = "CARTAO_INEXISTENTE";
 	
 	@Autowired
@@ -39,7 +41,7 @@ public class CartaoService {
 		cartaoDTO.setSenha(encoder.encode(cartaoDTO.getSenha()));
 	}
 
-	public Double retornarSaldo(Long numeroCartao) {
+	public BigDecimal retornarSaldo(Long numeroCartao) {
 		CartaoDTO dto = null;
 		CartaoEntity cartaoEntity = buscarCartao(numeroCartao);
 		dto = parseToDTO(cartaoEntity);

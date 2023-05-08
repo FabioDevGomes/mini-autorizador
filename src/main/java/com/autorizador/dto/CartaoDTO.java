@@ -1,6 +1,7 @@
 package com.autorizador.dto;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,7 +16,7 @@ public class CartaoDTO implements Serializable{
 	private Long numeroCartao;
 
 	@JsonIgnore
-	private Double saldo;
+	private BigDecimal saldo;
 
 	public Long getId() {
 		return id;
@@ -41,19 +42,19 @@ public class CartaoDTO implements Serializable{
 		this.numeroCartao = numeroCartao;
 	}
 	
-	public Double getSaldo() {
+	public BigDecimal getSaldo() {
 		return saldo;
 	}
 	
-	public void setSaldo(Double saldo) {
+	public void setSaldo(BigDecimal saldo) {
 		this.saldo = saldo;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, numeroCartao, saldo, senha);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

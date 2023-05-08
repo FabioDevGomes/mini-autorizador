@@ -1,5 +1,7 @@
 package com.autorizador.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +9,6 @@ import javax.persistence.Id;
 
 import org.hibernate.validator.constraints.Range;
 import org.springframework.lang.NonNull;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class CartaoEntity {
@@ -24,7 +25,7 @@ public class CartaoEntity {
 	private Long numeroCartao;
 	
 	@Range(min = 0)
-	private Double saldo;
+	private BigDecimal saldo;
 	
 	public Long getId() {
 		return id;
@@ -50,11 +51,11 @@ public class CartaoEntity {
 		this.numeroCartao = numeroCartao;
 	}
 	
-	public Double getSaldo() {
+	public BigDecimal getSaldo() {
 		return saldo;
 	}
 	
-	public void setSaldo(Double saldo) {
+	public void setSaldo(BigDecimal saldo) {
 		this.saldo = saldo;
 	}
 

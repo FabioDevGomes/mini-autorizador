@@ -1,5 +1,7 @@
 package com.autorizador.controller;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -32,7 +34,7 @@ public class CartaoController {
 	}
 
 	@GetMapping(value = "/{numeroCartao}")
-	public Double obterSaldo(@PathVariable("numeroCartao") Long numeroCartao) {
+	public BigDecimal obterSaldo(@PathVariable("numeroCartao") Long numeroCartao) {
 		return cartaoService.retornarSaldo(numeroCartao);
 	}
 	
