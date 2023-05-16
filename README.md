@@ -1,6 +1,5 @@
 # mini-autorizador
-micro serviço de autorização de transações via cartão VR Benefícios
-
+micro serviço de autorização de transações 
 
 
 Tratativa de exceções com novas classes alinhadas ao DDD
